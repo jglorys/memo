@@ -18,17 +18,27 @@ public class TestController {
 	
 	//Spring Response 테스트
 	//URL : http://localhost/test1
-	@RequestMapping("/test1")
+	@RequestMapping("/test1_1")
 	@ResponseBody
 	public String test1() {
 		return "hello world!";
 	}
 
 	//DB 연동 테스트
-	@RequestMapping("/test2")
-	@ResponseBody
+	@RequestMapping("/test1_2")
+	@ResponseBody //데이터 출력하
 	public List<Map<String, Object>> test2() { 
 		return testBO.getUserList();
 	}
-
+	
+	//JSP 연동 테스트
+	@RequestMapping("/test1_3")
+	public String test3() {
+		return "test/test";
+	}
+	
+	@RequestMapping("/test1_4")
+	public String test4() {
+		return "template/layout";
+	}
 }
