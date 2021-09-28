@@ -10,6 +10,11 @@ public class UserController {
 	
 	// 회원가입 View
 	// Path: /user/sign_up_view
+	/**
+	 * 회원가입 페이지
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/sign_up_view")
 	public String signUpView(Model model) {
 		
@@ -19,9 +24,10 @@ public class UserController {
 	
 	//로그인 View
 	//Path: /user/sign_in_view
-	@RequestMapping("/signIpView")
-	public String signInView() {
-		return "user/sign_in_view";
+	@RequestMapping("/sign_in_view")
+	public String signInView(Model model) {
+		model.addAttribute("viewName", "user/sign_in");
+		return "template/layout";
 	}
 	
 }
