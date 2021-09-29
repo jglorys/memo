@@ -30,7 +30,6 @@
 			, #{email}
 			, NOW()
 			, NOW()
-			
 		)
  	</insert>
  

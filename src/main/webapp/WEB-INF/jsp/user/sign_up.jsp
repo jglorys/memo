@@ -16,7 +16,8 @@
 							<button type="button" id="loginIdCheckBtn"
 								class="btn btn-success ml-2">중복확인</button>
 							<br>
-						</div> <%-- 아이디 체크 결과 --%> <%-- d-none 클래스: display none (보이지 않게) --%>
+						</div> 
+						<%-- 아이디 체크 결과 --%> <%-- d-none 클래스: display none (보이지 않게) --%>
 						<div id="idCheckLength" class="small text-danger d-none">ID를
 							4자 이상 입력해주세요.</div>
 						<div id="idCheckDuplicated" class="small text-danger d-none">이미
@@ -155,7 +156,7 @@
 			$.post(url, data)
 			.done(function(data){
 				if (data.result == 'success') {
-					alert("가입이 완료되었습니다! 로그인 해주세요.")
+					alert("가입이 완료되었습니다! 로그인 해주세요.");
 					location.href="/user/sign_in_view";
 				} else {
 					alert("가입에 실패했습니다.");
