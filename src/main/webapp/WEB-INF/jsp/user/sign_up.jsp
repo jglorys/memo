@@ -47,7 +47,6 @@
 						class="form-control" placeholder="이메일 주소를 입력하세요."></td>
 				</tr>
 			</table>
-			<br>
 
 			<button type="button" id="signUpBtn"
 				class="btn btn-primary float-right">회원가입</button>

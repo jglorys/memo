@@ -1,5 +1,8 @@
 package com.memo.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,11 @@ public class UserController {
 		return "template/layout";
 	}
 	
+	/**
+	 * 로그인 화면
+	 * @param model
+	 * @return
+	 */
 	//로그인 View
 	//Path: /user/sign_in_view
 	@RequestMapping("/sign_in_view")
@@ -30,4 +38,15 @@ public class UserController {
 		return "template/layout";
 	}
 	
+	
+	@RequestMapping("/sign_out")
+	public String signOutView(HttpServletRequest request) {
+		// session을 가져와서 로그아웃 해야 하므로 
+		HttpSession session = request.getSession();
+		session.removeAttribute("userId");
+		session.removeAttribute("userName");
+		session.removeAttribute("userLoginId");
+		// 리다이렉트 = 완전히 다른 화면으로 보냄
+		return "redirect:/user/sign_in_view";
+	}
 }

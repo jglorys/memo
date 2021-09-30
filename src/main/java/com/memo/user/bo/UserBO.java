@@ -2,8 +2,6 @@ package com.memo.user.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.memo.user.dao.UserDAO;
 import com.memo.user.model.User;
@@ -21,4 +19,9 @@ public class UserBO {
 	public int addNewUser(String loginId, String password, String name, String email) {
 		return userDAO.insertNewUser(loginId, password, name, email);
 	}
+	
+	public User getUserByLoginIdAndPassword(String loginId, String password) {
+		return userDAO.selectUserByLoginIdAndPassword(loginId, password);
+	}
+
 }
