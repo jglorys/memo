@@ -38,15 +38,20 @@ public class UserController {
 		return "template/layout";
 	}
 	
-	
+	/**
+	 * 로그아웃
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/sign_out")
 	public String signOutView(HttpServletRequest request) {
-		// session을 가져와서 로그아웃 해야 하므로 
+		// session을 가져와서 로그아웃 해야 하므로 - 세션 관련된 객체는 request에 담겨져 있음
 		HttpSession session = request.getSession();
 		session.removeAttribute("userId");
 		session.removeAttribute("userName");
 		session.removeAttribute("userLoginId");
-		// 리다이렉트 = 완전히 다른 화면으로 보냄
+		// redirect = 완전히 다른 화면으로 보냄
+		// 뒤에는 RequestMapping의 URL이 들어감
 		return "redirect:/user/sign_in_view";
 	}
 }

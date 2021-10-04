@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-@Component
+@Component //스프링 빈 일때
 public class PermissionInterceptor implements HandlerInterceptor {
 	
 	//private Logger logger = LoggerFactory.getLogger(PermisssionInterCeptor.class);

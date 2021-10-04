@@ -70,7 +70,6 @@ public class UserRestController {
 	
 	/**
 	 * 로그인
-	 * 
 	 * @param loginId
 	 * @param password
 	 * @param request

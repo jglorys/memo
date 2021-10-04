@@ -33,7 +33,7 @@
 	
 	$(document).ready(function(){
 		$('#loginForm').submit(function(e){
-			e.preventDefault(); //submjit 자동 수행 중단
+			e.preventDefault(); //submit 자동 수행 중단
 			
 			// validation
 			let loginId = $('input[name=loginId]').val().trim();
@@ -51,8 +51,8 @@
 			// <form id="loginForm" action="/user/sign_in" method="post">
 			let url = $(this).attr('action'); //$(this) = $('#loginForm')
 			let data = $(this).serialize(); // 쿼리스트링으로 name 값들을 구성하고 requestBody에 넣어 보낸다.
-			console.log("url:" + url);
-			console.log("data:" + data);
+			//console.log("url:" + url);
+			//console.log("data:" + data);
 			
 			//$.post(url, data).done(function(data){     ....  });
 			$.post(url, data)
