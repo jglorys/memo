@@ -23,7 +23,7 @@ public class FileManagerService {
 	// 넘어온 덩어리 파일을 우리 컴퓨터 폴더에 저장하고, WAS의 url 만들고, url에 접속할때 사진 뿌리게 함
 	
 	// 실제 이미지가 저장될 경로 (경로 복붙하고 맨 마지막에 "/" 붙이자!
-	public final static String FILE_UPLOAD_PATH ="C:\\Users\\jglor\\웹개발\\6_spring_project\\ex\\memo_workspace\\Memo\\images/";
+	public final static String FILE_UPLOAD_PATH ="C:\\Users\\jglor\\웹개발\\6_spring_project\\ex\\images/";
 	
 	// 바이너리 파일을 통으로 받아서 url로 만들고 걔를 리턴 (나중에 BO가 파일줄테니깐 url내놓으라고 함)
 	public String saveFile(String loginId, MultipartFile file) throws IOException {
