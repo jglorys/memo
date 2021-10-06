@@ -25,7 +25,7 @@
 			<%-- Post객체에서 .으로 꺼낼 수 있음 --%>
 				<tr>
 					<td>${post.id}</td>
-					<td>${post.subject}</td>
+					<td><a href="/post/post_detail_view?postId=${post.id}" class="postSubject">${post.subject}</a></td>
 					<td>
 						<%--Date 객체로 내려온 값을 String Format으로 변경해서 출력 --%>
 						<fmt:formatDate value="${post.createdAt}" pattern="yyyy-MM-dd HH:mm:ss"/>

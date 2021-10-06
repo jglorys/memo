@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.memo.post.bo.PostBO;
 import com.memo.post.model.Post;
@@ -50,10 +51,52 @@ public class PostController {
 		return "template/layout";
 	}
 	
+	/**
+	 * 글쓰기 화면
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/post_create_view")
-	public String postCreateView(Model model) {
+	public String postCreateView(HttpServletRequest request, Model model) {
+		
+		// 로그인된 상태에서만 페이지 접근 가능 - 검증필요(인터셉터 있지만 이중으로 검사)
+		HttpSession session = request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			//세션에 id가 없으면 로그인 하는 페이지로 보낸다 (redirect)
+			return "redirect:/user/sign_in_view";	
+		}
+		
 		
 		model.addAttribute("viewName", "post/post_create"); //post/post_create jsp로 보냄
 		return "template/layout";
 	}
+	
+	@RequestMapping("/post_detail_view")
+	public String postDetailView(
+			HttpServletRequest request,
+			@RequestParam("postId") int postId,
+			Model model) {
+		// post의 id값이 파라미터로 필요함
+		
+		// 로그인 된 상태에서만 이 페이지에 접근 가능 - 검증필요 (인터셉터 없으면 필수임.. 있는데 이중으로 검사)
+		HttpSession session = request.getSession();
+		Integer userId = (Integer) session.getAttribute("userId");
+		if (userId == null) {
+			//세션에 id가 없으면 로그인 하는 페이지로 보낸다 (redirect)
+			return "redirect:/user/sign_in_view";	
+		}
+		
+		// postId에 해당하는 게시물을 가져와서 model에 담는다.
+		Post post = postBO.getPost(postId);
+		model.addAttribute("post", post); //jsp에서 꺼내서 사용 가능
+		
+		
+		model.addAttribute("viewName", "post/post_detail");
+		return "template/layout";
+	}
+	
+	
+	
+	
 }

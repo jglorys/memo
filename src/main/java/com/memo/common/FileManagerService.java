@@ -49,5 +49,22 @@ public class FileManagerService {
 		return "/images/" + directoryName + file.getOriginalFilename();
 	}
 	
+	public void deleteFile(String imagePath) throws IOException {
+		// 파라미터:    /images/   qwer_138237428/   apple.png
+		// 실제경로:   FILE_UPLOAD_PATH ="C:\\Users\\jglor\\웹개발\\6_spring_project\\ex\\images/"
+		// 실제경로 + 파라미터 => 겹쳐져 있는 /images 를 제거해줘야한다.(파라미터쪽에서 공백으로 치환)
+		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images/", "")); //사진의 경로
+		if (Files.exists(path)) {
+			// 실제로 파일이 존재하면 삭제한다.
+			Files.delete(path); //BO가 exception 처리함로 얘는 던진다
+		}
+		// 디렉토리 삭제
+		path = path.getParent(); //사진의 부모인 디렉토리가 나옴
+		if (Files.exists(path)) {
+			// 디렉토리가 존재하면 삭제한다.
+			Files.delete(path);
+		}
+	}
+	
 	
 }

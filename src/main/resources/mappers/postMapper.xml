@@ -39,7 +39,36 @@
 		)
 	
 	</insert>
-
+	
+	<select id="selectPost" resultType="com.memo.post.model.Post" parameterType="int">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+	
+	</select>
+	
+	<update id="updatePost" parameterType="map">
+		UPDATE `post`
+		SET
+			`subject` = #{subject}
+			, `content` = #{content}
+			, `updatedAt` = NOW()
+			<!--  imagePath가 있을 때에만 수정한다. - 동적쿼리 작성 -->
+			<if test="imagePath != null">, `imagePath` = #{imagePath}</if>
+		WHERE
+			`id` = #{id}
+			
+	
+	</update>
 
 </mapper>
  

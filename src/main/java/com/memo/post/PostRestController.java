@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,14 @@ public class PostRestController {
 	@Autowired
 	private PostBO postBO;
 	
-	
+	/**
+	 * 새 게시물 업로드
+	 * @param subject
+	 * @param content
+	 * @param file
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("/create")
 	//json으로 리턴하므로 맵으로 리턴
 	public Map<String, Object> create(
@@ -50,6 +58,28 @@ public class PostRestController {
 		
 		// 결과값 response
 		return  result;
+	}
+	
+	@PutMapping("/update")
+	public Map<String, Object> update(
+			@RequestParam("postId") int postId,
+			@RequestParam("subject") String subject,
+			@RequestParam("content") String content,
+			@RequestParam(value = "file" , required = false) MultipartFile file,
+			HttpServletRequest request
+			) {
+		HttpSession session = request.getSession();
+		String loginId = (String) session.getAttribute("userLoginId");
+		
+		//DB업데이트 - 5개 bo한테 넘겨줌
+		postBO.updatePost(postId, loginId, subject, content, file);
+		
+		
+		//result 응답값 구성 -- 여기까지 온거면 무조건 성공인 것임.if row>0 해서 돌려도됨
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
+		return result;
+		
 	}
 	
 }
