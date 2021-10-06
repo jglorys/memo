@@ -23,7 +23,7 @@
 		</c:if>
 		
 		<div class="d-flex justify-content-between">
-			<a href="/post/post_list_view" class="btn btn-secondary">삭제</a>
+			<a href="#" class="btn btn-secondary" id="deleteBtn" data-post-id="${post.id}">삭제</a>
 			
 			<div>
 				<%-- 목록으로 : 간단한 링크 ==> a, button(스크립트에 함수구현필요) 다 됨 --%>
@@ -102,6 +102,32 @@ $(document).ready(function(){
 			
 		});
 	});
+	
+	$('#deleteBtn').on('click', function(e){
+			e.preventDefault(); // a태그가 화면 상단으로 올라가는 것 방지(버튼태그면 안해도됨)
+			
+			let postId = $(this).data('post-id'); //deleteBtn에 담아놓은 post-id데이터를 가져옴
+			
+			// ajax 통신으로 삭제 요청
+			$.ajax({
+				type : 'delete',
+				url : '/post/delete',
+				data : {'postId':postId}, //json으로 넘김
+				success : function(data){
+					if (data.result == 'success'){
+						// 삭제했으면 글 목록으로 보냄
+						alert("글이 삭제되었습니다.");
+						location.href = "/post/post_list_view";
+					}
+				},
+				error : function(e) {
+					alert("메모를 삭제하는데 실패했습니다." + e);
+					location.reload();
+				}
+				
+			});
+	});
+	
 });
 
 </script>

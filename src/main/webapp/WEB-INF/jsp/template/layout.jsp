@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div class="container">
-		<header class="bg-secondary">
+		<header>
 			<jsp:include page="../include/gnb.jsp" />
 			<!-- 상대경로이므로 앞에 / 안붙이고, 부모인 jsp폴더로 올라가니까 ../ 문법 사용 -->
 		</header>
@@ -28,7 +28,7 @@
 			<jsp:include page="../${viewName}.jsp" />
 		</section>
 		
-		<footer class="bg-secondary">
+		<footer class="mt-4">
 			<jsp:include page="../include/footer.jsp" />
 		</footer>
 		

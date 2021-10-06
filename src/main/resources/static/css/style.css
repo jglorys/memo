@@ -2,14 +2,15 @@
 
 
 /* layout */
-header {height:100px;}
+header {height:100px; background-color: rgb(204, 255, 204);}
 header .logo {height:100px;}
 header .login_info {height:100px;}
+
 
 .postSubject {color: #000;}
 .login-box {width: 300px}
 
-footer {height:100px;}
+footer {height:100px; background-color: rgb(204, 255, 204);}
 
 
 

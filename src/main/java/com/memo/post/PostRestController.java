@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,6 +61,15 @@ public class PostRestController {
 		return  result;
 	}
 	
+	/**
+	 * 기존 글 수정
+	 * @param postId
+	 * @param subject
+	 * @param content
+	 * @param file
+	 * @param request
+	 * @return
+	 */
 	@PutMapping("/update")
 	public Map<String, Object> update(
 			@RequestParam("postId") int postId,
@@ -79,7 +89,22 @@ public class PostRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("result", "success");
 		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("postId") int postId
+			) {
+		// 검증은 생략
+		// db postId 해당하는 데이터 삭제
+		postBO.deletePost(postId);
 		
+		
+		// 결과 리턴
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success"); //row>0으로 해도 되고, 여기까지온게 성공이므로 둘중 하나 선택해서 하면됨
+		
+		return result;
 	}
 	
 }
